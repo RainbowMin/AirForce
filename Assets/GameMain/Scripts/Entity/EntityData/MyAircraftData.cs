@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AirForce
+namespace StarForce
 {
     [Serializable]
     public class MyAircraftData : AircraftData
@@ -10,7 +10,7 @@ namespace AirForce
         private string m_Name = null;
 
         public MyAircraftData(int entityId, int typeId)
-            : base(entityId, typeId)
+            : base(entityId, typeId, CampType.Player)
         {
 
         }

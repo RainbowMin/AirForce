@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AirForce
+namespace StarForce
 {
     [Serializable]
     public abstract class AccessoryObjectData : EntityData
@@ -9,10 +9,14 @@ namespace AirForce
         [SerializeField]
         private int m_OwnerId = 0;
 
-        public AccessoryObjectData(int entityId, int typeId, int ownerId)
+        [SerializeField]
+        private CampType m_OwnerCamp = CampType.Unknown;
+
+        public AccessoryObjectData(int entityId, int typeId, int ownerId, CampType ownerCamp)
             : base(entityId, typeId)
         {
             m_OwnerId = ownerId;
+            m_OwnerCamp = ownerCamp;
         }
 
         /// <summary>
@@ -23,6 +27,17 @@ namespace AirForce
             get
             {
                 return m_OwnerId;
+            }
+        }
+
+        /// <summary>
+        /// 拥有者阵营。
+        /// </summary>
+        public CampType OwnerCamp
+        {
+            get
+            {
+                return m_OwnerCamp;
             }
         }
     }

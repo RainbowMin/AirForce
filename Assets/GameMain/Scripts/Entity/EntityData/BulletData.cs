@@ -1,13 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AirForce
+namespace StarForce
 {
     [Serializable]
-    public class BulletData : AccessoryObjectData
+    public class BulletData : EntityData
     {
         [SerializeField]
-        private Vector3 m_StartPosition = Vector3.zero;
+        private int m_OwnerId = 0;
+
+        [SerializeField]
+        private CampType m_OwnerCamp = CampType.Unknown;
 
         [SerializeField]
         private int m_Attack = 0;
@@ -15,23 +18,28 @@ namespace AirForce
         [SerializeField]
         private float m_Speed = 0f;
 
-        [SerializeField]
-        private float m_LifeTime = 0f;
-
-        public BulletData(int entityId, int typeId, int ownerId, Vector3 startPosition, int attack)
-            : base(entityId, typeId, ownerId)
+        public BulletData(int entityId, int typeId, int ownerId, CampType ownerCamp, int attack, float speed)
+            : base(entityId, typeId)
         {
-            m_StartPosition = startPosition;
+            m_OwnerId = ownerId;
+            m_OwnerCamp = ownerCamp;
             m_Attack = attack;
-            m_Speed = 20f;
-            m_LifeTime = 3f;
+            m_Speed = speed;
         }
 
-        public Vector3 StartPosition
+        public int OwnerId
         {
             get
             {
-                return m_StartPosition;
+                return m_OwnerId;
+            }
+        }
+
+        public CampType OwnerCamp
+        {
+            get
+            {
+                return m_OwnerCamp;
             }
         }
 
@@ -48,14 +56,6 @@ namespace AirForce
             get
             {
                 return m_Speed;
-            }
-        }
-
-        public float LifeTime
-        {
-            get
-            {
-                return m_LifeTime;
             }
         }
     }

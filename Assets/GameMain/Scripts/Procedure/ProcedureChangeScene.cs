@@ -4,10 +4,13 @@ using GameFramework.Event;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
-namespace AirForce
+namespace StarForce
 {
     public partial class ProcedureChangeScene : ProcedureBase
     {
+        private const int MenuSceneId = 1;
+
+        private bool m_ChangeToMenu = false;
         private bool m_IsChangeSceneComplete = false;
         private int m_BackgroundMusicId = 0;
 
@@ -30,16 +33,24 @@ namespace AirForce
             GameEntry.Event.Subscribe(UnityGameFramework.Runtime.EventId.LoadSceneUpdate, OnLoadSceneUpdate);
             GameEntry.Event.Subscribe(UnityGameFramework.Runtime.EventId.LoadSceneDependencyAsset, OnLoadSceneDependencyAsset);
 
+            // 停止所有声音
+            GameEntry.Sound.StopAllSounds();
+
+            // 隐藏所有实体
+            GameEntry.Entity.HideAllEntities();
+
+            // 卸载所有场景
             string[] loadedSceneAssetNames = GameEntry.Scene.GetLoadedSceneAssetNames();
             for (int i = 0; i < loadedSceneAssetNames.Length; i++)
             {
                 GameEntry.Scene.UnloadScene(loadedSceneAssetNames[i]);
             }
 
+            // 还原游戏速度
             GameEntry.Base.ResetNormalGameSpeed();
-            GameEntry.Sound.StopAllSounds();
 
             int sceneId = procedureOwner.GetData<VarInt>(Constant.ProcedureData.NextSceneId).Value;
+            m_ChangeToMenu = (sceneId == MenuSceneId);
             IDataTable<DRScene> dtScene = GameEntry.DataTable.GetDataTable<DRScene>();
             DRScene drScene = dtScene.GetDataRow(sceneId);
             if (drScene == null)
@@ -71,7 +82,14 @@ namespace AirForce
                 return;
             }
 
-            ChangeState<ProcedureMain>(procedureOwner);
+            if (m_ChangeToMenu)
+            {
+                ChangeState<ProcedureMenu>(procedureOwner);
+            }
+            else
+            {
+                ChangeState<ProcedureMain>(procedureOwner);
+            }
         }
 
         private void OnLoadSceneSuccess(object sender, GameEventArgs e)
@@ -100,7 +118,7 @@ namespace AirForce
                 return;
             }
 
-            OnError("Load scene '{0}' failure, error message '{1}'.", ne.SceneAssetName, ne.ErrorMessage);
+            Log.Error("Load scene '{0}' failure, error message '{1}'.", ne.SceneAssetName, ne.ErrorMessage);
         }
 
         private void OnLoadSceneUpdate(object sender, GameEventArgs e)

@@ -1,24 +1,74 @@
 ﻿using GameFramework;
 using GameFramework.DataTable;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityGameFramework.Runtime;
 
-namespace AirForce
+namespace StarForce
 {
     public static class UIExtension
     {
+        public static IEnumerator FadeToAlpha(this CanvasGroup canvasGroup, float alpha, float duration)
+        {
+            float time = 0f;
+            float originalAlpha = canvasGroup.alpha;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(originalAlpha, alpha, time / duration);
+                yield return new WaitForEndOfFrame();
+            }
+
+            canvasGroup.alpha = alpha;
+        }
+
+        public static IEnumerator SmoothValue(this Slider slider, float value, float duration)
+        {
+            float time = 0f;
+            float originalValue = slider.value;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                slider.value = Mathf.Lerp(originalValue, value, time / duration);
+                yield return new WaitForEndOfFrame();
+            }
+
+            slider.value = value;
+        }
+
         public static bool HasUIForm(this UIComponent uiComponent, UIFormId uiFormId, string uiGroup = "Default")
         {
             return uiComponent.HasUIForm((int)uiFormId, uiGroup);
         }
 
-        public static UIForm GetUIForm(this UIComponent uiComponent, UIFormId uiFormId, string uiGroup = "Default")
+        public static UGuiForm GetUIForm(this UIComponent uiComponent, UIFormId uiFormId, string uiGroup = "Default")
         {
-            return uiComponent.GetUIForm((int)uiFormId, uiGroup);
+            UnityGameFramework.Runtime.UIForm uiForm = uiComponent.GetUIForm((int)uiFormId, uiGroup);
+            if (uiForm == null)
+            {
+                return null;
+            }
+
+            return (UGuiForm)uiForm.Logic;
         }
 
-        public static UIForm[] GetUIForms(this UIComponent uiComponent, UIFormId uiFormId, string uiGroup = "Default")
+        public static UGuiForm[] GetUIForms(this UIComponent uiComponent, UIFormId uiFormId, string uiGroup = "Default")
         {
-            return uiComponent.GetUIForms((int)uiFormId, uiGroup);
+            UnityGameFramework.Runtime.UIForm[] uiForms = uiComponent.GetUIForms((int)uiFormId, uiGroup);
+            List<UGuiForm> uiFormList = new List<UGuiForm>();
+            for (int i = 0; i < uiForms.Length; i++)
+            {
+                uiFormList.Add((UGuiForm)uiForms[i].Logic);
+            }
+
+            return uiFormList.ToArray();
+        }
+
+        public static void CloseUIForm(this UIComponent uiComponent, UGuiForm uiForm)
+        {
+            uiComponent.CloseUIForm(uiForm.UIForm);
         }
 
         public static void OpenUIForm(this UIComponent uiComponent, UIFormId uiFormId, object userData = null)
@@ -39,7 +89,7 @@ namespace AirForce
             uiComponent.OpenUIForm(uiFormId, AssetUtility.GetUIFormAsset(drUIForm.AssetName), drUIForm.UIGroupName, drUIForm.PauseCoveredUIForm, userData);
         }
 
-        public static void OpenDialog(this UIComponent uiComponent, UIDialogParams dialogParams)
+        public static void OpenDialog(this UIComponent uiComponent, DialogParams dialogParams)
         {
             if (((ProcedureBase)GameEntry.Procedure.CurrentProcedure).UseNativeDialog)
             {
@@ -47,22 +97,13 @@ namespace AirForce
             }
             else
             {
-                uiComponent.OpenUIForm(UIFormId.Dialog, dialogParams);
+                uiComponent.OpenUIForm(UIFormId.DialogForm, dialogParams);
             }
         }
 
-        private static void OpenNativeDialog(UIDialogParams dialogParams)
+        private static void OpenNativeDialog(DialogParams dialogParams)
         {
             throw new System.NotImplementedException("OpenNativeDialog");
-        }
-
-        private interface INativeCaller
-        {
-            void OpenDialog(int mode, string title, string message,
-                string confirmText, int confirmCallbackId,
-                string cancelText, int cancelCallbackId,
-                string otherText, int otherCallbackId,
-                string userData);
         }
     }
 }

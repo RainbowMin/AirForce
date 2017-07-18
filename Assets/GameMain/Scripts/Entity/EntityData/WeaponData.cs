@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace AirForce
+namespace StarForce
 {
     [Serializable]
     public class WeaponData : AccessoryObjectData
@@ -16,8 +16,14 @@ namespace AirForce
         [SerializeField]
         private int m_BulletId = 0;
 
-        public WeaponData(int entityId, int typeId, int ownerId)
-            : base(entityId, typeId, ownerId)
+        [SerializeField]
+        private float m_BulletSpeed = 0f;
+
+        [SerializeField]
+        private int m_BulletSoundId = 0;
+
+        public WeaponData(int entityId, int typeId, int ownerId, CampType ownerCamp)
+            : base(entityId, typeId, ownerId, ownerCamp)
         {
             IDataTable<DRWeapon> dtWeapon = GameEntry.DataTable.GetDataTable<DRWeapon>();
             DRWeapon drWeapon = dtWeapon.GetDataRow(TypeId);
@@ -29,6 +35,8 @@ namespace AirForce
             m_Attack = drWeapon.Attack;
             m_AttackInterval = drWeapon.AttackInterval;
             m_BulletId = drWeapon.BulletId;
+            m_BulletSpeed = drWeapon.BulletSpeed;
+            m_BulletSoundId = drWeapon.BulletSoundId;
         }
 
         /// <summary>
@@ -61,6 +69,28 @@ namespace AirForce
             get
             {
                 return m_BulletId;
+            }
+        }
+
+        /// <summary>
+        /// 子弹速度。
+        /// </summary>
+        public float BulletSpeed
+        {
+            get
+            {
+                return m_BulletSpeed;
+            }
+        }
+
+        /// <summary>
+        /// 子弹声音编号。
+        /// </summary>
+        public int BulletSoundId
+        {
+            get
+            {
+                return m_BulletSoundId;
             }
         }
     }

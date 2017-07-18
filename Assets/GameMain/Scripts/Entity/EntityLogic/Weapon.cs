@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-namespace AirForce
+namespace StarForce
 {
     /// <summary>
     /// 武器类。
@@ -51,7 +51,11 @@ namespace AirForce
             }
 
             m_NextAttackTime = Time.time + m_WeaponData.AttackInterval;
-            GameEntry.Entity.ShowBullet(new BulletData(GameEntry.Entity.GenerateSerialId(), m_WeaponData.BulletId, Id, CachedTransform.position, m_WeaponData.Attack));
+            GameEntry.Entity.ShowBullet(new BulletData(GameEntry.Entity.GenerateSerialId(), m_WeaponData.BulletId, m_WeaponData.OwnerId, m_WeaponData.OwnerCamp, m_WeaponData.Attack, m_WeaponData.BulletSpeed)
+            {
+                Position = CachedTransform.position,
+            });
+            GameEntry.Sound.PlaySound(m_WeaponData.BulletSoundId);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using GameFramework.DataTable;
 using System.Collections.Generic;
 
-namespace AirForce
+namespace StarForce
 {
     /// <summary>
     /// 战机表。
@@ -27,6 +27,24 @@ namespace AirForce
         /// 推进器编号。
         /// </summary>
         public int ThrusterId
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 死亡特效编号。
+        /// </summary>
+        public int DeadEffectId
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// 死亡声音编号。
+        /// </summary>
+        public int DeadSoundId
         {
             get;
             private set;
@@ -58,6 +76,8 @@ namespace AirForce
             {
                 m_ArmorIds[i] = int.Parse(text[index++]);
             }
+            DeadEffectId = int.Parse(text[index++]);
+            DeadSoundId = int.Parse(text[index++]);
         }
 
         private void AvoidJIT()

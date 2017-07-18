@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AirForce
+namespace StarForce
 {
     [Serializable]
     public abstract class AircraftData : TargetableObjectData
@@ -20,8 +20,17 @@ namespace AirForce
         [SerializeField]
         private int m_MaxHP = 0;
 
-        public AircraftData(int entityId, int typeId)
-            : base(entityId, typeId)
+        [SerializeField]
+        private int m_Defense = 0;
+
+        [SerializeField]
+        private int m_DeadEffectId = 0;
+
+        [SerializeField]
+        private int m_DeadSoundId = 0;
+
+        public AircraftData(int entityId, int typeId, CampType camp)
+            : base(entityId, typeId, camp)
         {
             IDataTable<DRAircraft> dtAircraft = GameEntry.DataTable.GetDataTable<DRAircraft>();
             DRAircraft drAircraft = dtAircraft.GetDataRow(TypeId);
@@ -30,17 +39,20 @@ namespace AirForce
                 return;
             }
 
-            m_ThrusterData = new ThrusterData(GameEntry.Entity.GenerateSerialId(), drAircraft.ThrusterId, Id);
+            m_ThrusterData = new ThrusterData(GameEntry.Entity.GenerateSerialId(), drAircraft.ThrusterId, Id, Camp);
 
             for (int index = 0, weaponId = 0; (weaponId = drAircraft.GetWeaponIds(index)) > 0; index++)
             {
-                AttachWeaponData(new WeaponData(GameEntry.Entity.GenerateSerialId(), weaponId, Id));
+                AttachWeaponData(new WeaponData(GameEntry.Entity.GenerateSerialId(), weaponId, Id, Camp));
             }
 
             for (int index = 0, armorId = 0; (armorId = drAircraft.GetArmorIds(index)) > 0; index++)
             {
-                AttachArmorData(new ArmorData(GameEntry.Entity.GenerateSerialId(), armorId, Id));
+                AttachArmorData(new ArmorData(GameEntry.Entity.GenerateSerialId(), armorId, Id, Camp));
             }
+
+            m_DeadEffectId = drAircraft.DeadEffectId;
+            m_DeadSoundId = drAircraft.DeadSoundId;
 
             HP = m_MaxHP;
         }
@@ -57,6 +69,17 @@ namespace AirForce
         }
 
         /// <summary>
+        /// 防御。
+        /// </summary>
+        public int Defense
+        {
+            get
+            {
+                return m_Defense;
+            }
+        }
+
+        /// <summary>
         /// 速度。
         /// </summary>
         public float Speed
@@ -64,6 +87,22 @@ namespace AirForce
             get
             {
                 return m_ThrusterData.Speed;
+            }
+        }
+
+        public int DeadEffectId
+        {
+            get
+            {
+                return m_DeadEffectId;
+            }
+        }
+
+        public int DeadSoundId
+        {
+            get
+            {
+                return m_DeadSoundId;
             }
         }
 
@@ -120,7 +159,7 @@ namespace AirForce
             }
 
             m_ArmorDatas.Add(armorData);
-            RefreshMaxHP();
+            RefreshData();
         }
 
         public void DetachArmorData(ArmorData armorData)
@@ -131,15 +170,17 @@ namespace AirForce
             }
 
             m_ArmorDatas.Remove(armorData);
-            RefreshMaxHP();
+            RefreshData();
         }
 
-        private void RefreshMaxHP()
+        private void RefreshData()
         {
             m_MaxHP = 0;
+            m_Defense = 0;
             for (int i = 0; i < m_ArmorDatas.Count; i++)
             {
                 m_MaxHP += m_ArmorDatas[i].MaxHP;
+                m_Defense += m_ArmorDatas[i].Defense;
             }
 
             if (HP > m_MaxHP)

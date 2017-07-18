@@ -4,8 +4,10 @@ using System;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
+using GameFramework.Fsm;
+using GameFramework.Procedure;
 
-namespace AirForce
+namespace StarForce
 {
     public class ProcedureLaunch : ProcedureBase
     {
@@ -21,12 +23,9 @@ namespace AirForce
         {
             base.OnEnter(procedureOwner);
 
-            // 初始化 GameEntry
-            GameEntry.Initialize();
-
             // 构建信息：发布版本时，把一些数据以 Json 的格式写入 Assets/GameMain/Configs/BuildInfo.txt，供游戏逻辑读取。
             GameEntry.Config.InitBuildInfo();
-            procedureOwner.SetData<VarInt>(Constant.ProcedureData.NextSceneId, 1);
+            procedureOwner.SetData<VarInt>(Constant.ProcedureData.NextSceneId, (int)SceneId.Menu);
 
             // 语言配置：设置当前使用的语言，如果不设置，则默认使用操作系统语言。
             InitLanguageSettings();
@@ -54,29 +53,40 @@ namespace AirForce
 
         private void InitLanguageSettings()
         {
-            if (GameEntry.Base.EditorResourceMode)
+            if (GameEntry.Base.EditorResourceMode && GameEntry.Base.EditorLanguage != Language.Unspecified)
             {
                 // 编辑器资源模式直接使用 Inspector 上设置的语言
                 return;
             }
 
+            Language language = GameEntry.Localization.Language;
             string languageString = GameEntry.Setting.GetString(Constant.Setting.Language);
-            if (string.IsNullOrEmpty(languageString))
+            if (!string.IsNullOrEmpty(languageString))
             {
-                return;
+                try
+                {
+                    language = (Language)Enum.Parse(typeof(Language), languageString);
+                }
+                catch
+                {
+
+                }
             }
 
-            Language language = (Language)Enum.Parse(typeof(Language), languageString);
-            if (language == Language.Unspecified)
+            if (language != Language.English
+                && language != Language.ChineseSimplified
+                && language != Language.ChineseTraditional)
             {
-                return;
+                // 若是暂不支持的语言，则使用英语
+                language = Language.English;
+
+                GameEntry.Setting.SetString(Constant.Setting.Language, language.ToString());
+                GameEntry.Setting.Save();
             }
 
             GameEntry.Localization.Language = language;
-            GameEntry.Setting.SetString(Constant.Setting.Language, language.ToString());
-            GameEntry.Setting.Save();
 
-            Log.Info("Init language settings complete.");
+            Log.Info("Init language settings complete, current language is '{0}'.", language.ToString());
         }
 
         private void InitCurrentVariant()
@@ -90,14 +100,14 @@ namespace AirForce
             string currentVariant = null;
             switch (GameEntry.Localization.Language)
             {
+                case Language.English:
+                    currentVariant = "en-us";
+                    break;
                 case Language.ChineseSimplified:
                     currentVariant = "zh-cn";
                     break;
                 case Language.ChineseTraditional:
                     currentVariant = "zh-tw";
-                    break;
-                case Language.English:
-                    currentVariant = "en-us";
                     break;
                 default:
                     currentVariant = "zh-cn";
@@ -124,6 +134,8 @@ namespace AirForce
             GameEntry.Sound.SetVolume("Music", GameEntry.Setting.GetFloat(Constant.Setting.MusicVolume, 0.3f));
             GameEntry.Sound.Mute("Sound", GameEntry.Setting.GetBool(Constant.Setting.SoundMuted, false));
             GameEntry.Sound.SetVolume("Sound", GameEntry.Setting.GetFloat(Constant.Setting.SoundVolume, 1f));
+            GameEntry.Sound.Mute("UISound", GameEntry.Setting.GetBool(Constant.Setting.UISoundMuted, false));
+            GameEntry.Sound.SetVolume("UISound", GameEntry.Setting.GetFloat(Constant.Setting.UISoundVolume, 1f));
 
             Log.Info("Init sound settings complete.");
         }

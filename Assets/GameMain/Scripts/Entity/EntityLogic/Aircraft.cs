@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-namespace AirForce
+namespace StarForce
 {
     /// <summary>
     /// 战机类。
@@ -99,6 +99,22 @@ namespace AirForce
                 m_Armors.Remove((Armor)childEntity);
                 return;
             }
+        }
+
+        protected override void OnDead(Entity attacker)
+        {
+            base.OnDead(attacker);
+
+            GameEntry.Entity.ShowEffect(new EffectData(GameEntry.Entity.GenerateSerialId(), m_AircraftData.DeadEffectId)
+            {
+                Position = CachedTransform.localPosition,
+            });
+            GameEntry.Sound.PlaySound(m_AircraftData.DeadSoundId);
+        }
+
+        public override ImpactData GetImpactData()
+        {
+            return new ImpactData(m_AircraftData.Camp, m_AircraftData.HP, 0, m_AircraftData.Defense);
         }
     }
 }

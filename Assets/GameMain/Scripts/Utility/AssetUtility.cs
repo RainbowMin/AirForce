@@ -1,4 +1,4 @@
-﻿namespace AirForce
+﻿namespace StarForce
 {
     public static class AssetUtility
     {
@@ -10,6 +10,11 @@
         public static string GetDictionaryAsset(string assetName)
         {
             return string.Format("Assets/GameMain/Localization/{0}/Dictionaries/{1}.xml", GameEntry.Localization.Language.ToString(), assetName);
+        }
+
+        public static string GetFontAsset(string assetName)
+        {
+            return string.Format("Assets/GameMain/Localization/{0}/Fonts/{1}.ttf", GameEntry.Localization.Language.ToString(), assetName);
         }
 
         public static string GetSceneAsset(string assetName)
@@ -34,17 +39,17 @@
 
         public static string GetUIFormAsset(string assetName)
         {
-            return string.Format("Assets/GameMain/UI/{0}.prefab", assetName);
+            return string.Format("Assets/GameMain/UI/UIForms/{0}.prefab", assetName);
         }
 
-        public static string GetAtlasAsset(string assetName)
+        public static string GetUISpriteAsset(string assetName)
         {
-            return string.Format("Assets/GameMain/UI/Atlases/{0}.prefab", assetName);
+            return string.Format("Assets/GameMain/UI/UISprites/{0}.png", assetName);
         }
 
-        public static string GetTextureAsset(string assetName)
+        public static string GetUISoundAsset(string assetName)
         {
-            return string.Format("Assets/GameMain/UI/Textures/{0}.png", assetName);
+            return string.Format("Assets/GameMain/UI/UISounds/{0}.wav", assetName);
         }
     }
 }

@@ -1,16 +1,17 @@
-﻿using System;
+﻿using GameFramework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AirForce
+namespace StarForce
 {
     /// <summary>
     /// AI 工具类。
     /// </summary>
     public static class AIUtility
     {
-        private static IDictionary<CampPair, RelationType> s_CampPairToRelation = new Dictionary<CampPair, RelationType>();
-        private static IDictionary<KeyValuePair<CampType, RelationType>, CampType[]> s_CampAndRelationToCamps = new Dictionary<KeyValuePair<CampType, RelationType>, CampType[]>();
+        private static Dictionary<CampPair, RelationType> s_CampPairToRelation = new Dictionary<CampPair, RelationType>();
+        private static Dictionary<KeyValuePair<CampType, RelationType>, CampType[]> s_CampAndRelationToCamps = new Dictionary<KeyValuePair<CampType, RelationType>, CampType[]>();
 
         static AIUtility()
         {
@@ -27,7 +28,7 @@ namespace AirForce
             s_CampPairToRelation.Add(new CampPair(CampType.Enemy, CampType.Enemy2), RelationType.Hostile);
             s_CampPairToRelation.Add(new CampPair(CampType.Enemy, CampType.Neutral2), RelationType.Neutral);
 
-            s_CampPairToRelation.Add(new CampPair(CampType.Neutral, CampType.Neutral), RelationType.Friendly);
+            s_CampPairToRelation.Add(new CampPair(CampType.Neutral, CampType.Neutral), RelationType.Neutral);
             s_CampPairToRelation.Add(new CampPair(CampType.Neutral, CampType.Player2), RelationType.Neutral);
             s_CampPairToRelation.Add(new CampPair(CampType.Neutral, CampType.Enemy2), RelationType.Neutral);
             s_CampPairToRelation.Add(new CampPair(CampType.Neutral, CampType.Neutral2), RelationType.Hostile);
@@ -39,7 +40,7 @@ namespace AirForce
             s_CampPairToRelation.Add(new CampPair(CampType.Enemy2, CampType.Enemy2), RelationType.Friendly);
             s_CampPairToRelation.Add(new CampPair(CampType.Enemy2, CampType.Neutral2), RelationType.Neutral);
 
-            s_CampPairToRelation.Add(new CampPair(CampType.Neutral2, CampType.Neutral2), RelationType.Friendly);
+            s_CampPairToRelation.Add(new CampPair(CampType.Neutral2, CampType.Neutral2), RelationType.Neutral);
         }
 
         /// <summary>
@@ -57,7 +58,14 @@ namespace AirForce
                 second = temp;
             }
 
-            return s_CampPairToRelation[new CampPair(first, second)];
+            RelationType relationType;
+            if (s_CampPairToRelation.TryGetValue(new CampPair(first, second), out relationType))
+            {
+                return relationType;
+            }
+
+            Log.Warning("Unknown relation between '{0}' and '{1}'.", first.ToString(), second.ToString());
+            return RelationType.Unknown;
         }
 
         /// <summary>
@@ -101,6 +109,71 @@ namespace AirForce
             Transform fromTransform = fromEntity.CachedTransform;
             Transform toTransform = toEntity.CachedTransform;
             return (toTransform.position - fromTransform.position).magnitude;
+        }
+
+        public static void PerformCollision(TargetableObject entity, Entity other)
+        {
+            if (entity == null || other == null)
+            {
+                return;
+            }
+
+            TargetableObject target = other as TargetableObject;
+            if (target != null)
+            {
+                ImpactData entityImpactData = entity.GetImpactData();
+                ImpactData targetImpactData = target.GetImpactData();
+                if (GetRelation(entityImpactData.Camp, targetImpactData.Camp) == RelationType.Friendly)
+                {
+                    return;
+                }
+
+                int entityDamageHP = CalcDamageHP(targetImpactData.Attack, entityImpactData.Defense);
+                int targetDamageHP = CalcDamageHP(entityImpactData.Attack, targetImpactData.Defense);
+
+                int delta = Mathf.Min(entityImpactData.HP - entityDamageHP, targetImpactData.HP - targetDamageHP);
+                if (delta > 0)
+                {
+                    entityDamageHP += delta;
+                    targetDamageHP += delta;
+                }
+
+                entity.ApplyDamage(target, entityDamageHP);
+                target.ApplyDamage(entity, targetDamageHP);
+                return;
+            }
+
+            Bullet bullet = other as Bullet;
+            if (bullet != null)
+            {
+                ImpactData entityImpactData = entity.GetImpactData();
+                ImpactData bulletImpactData = bullet.GetImpactData();
+                if (GetRelation(entityImpactData.Camp, bulletImpactData.Camp) == RelationType.Friendly)
+                {
+                    return;
+                }
+
+                int entityDamageHP = CalcDamageHP(bulletImpactData.Attack, entityImpactData.Defense);
+
+                entity.ApplyDamage(bullet, entityDamageHP);
+                GameEntry.Entity.HideEntity(bullet);
+                return;
+            }
+        }
+
+        private static int CalcDamageHP(int attack, int defense)
+        {
+            if (attack <= 0)
+            {
+                return 0;
+            }
+
+            if (defense < 0)
+            {
+                defense = 0;
+            }
+
+            return attack * attack / (attack + defense);
         }
 
         private struct CampPair

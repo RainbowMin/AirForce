@@ -989,6 +989,30 @@
             </summary>
             <param name="message">日志内容。</param>
         </member>
+        <member name="M:GameFramework.Log.Debug(System.String,System.Object)">
+            <summary>
+            记录调试级别日志，仅在带有 DEBUG 预编译选项时产生。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+        </member>
+        <member name="M:GameFramework.Log.Debug(System.String,System.Object,System.Object)">
+            <summary>
+            记录调试级别日志，仅在带有 DEBUG 预编译选项时产生。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+        </member>
+        <member name="M:GameFramework.Log.Debug(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            记录调试级别日志，仅在带有 DEBUG 预编译选项时产生。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+            <param name="arg2">日志参数 2。</param>
+        </member>
         <member name="M:GameFramework.Log.Debug(System.String,System.Object[])">
             <summary>
             记录调试级别日志，仅在带有 DEBUG 预编译选项时产生。
@@ -1001,6 +1025,30 @@
             打印信息级别日志，用于记录程序正常运行日志信息。
             </summary>
             <param name="message">日志内容</param>
+        </member>
+        <member name="M:GameFramework.Log.Info(System.String,System.Object)">
+            <summary>
+            打印信息级别日志，用于记录程序正常运行日志信息。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+        </member>
+        <member name="M:GameFramework.Log.Info(System.String,System.Object,System.Object)">
+            <summary>
+            打印信息级别日志，用于记录程序正常运行日志信息。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+        </member>
+        <member name="M:GameFramework.Log.Info(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            打印信息级别日志，用于记录程序正常运行日志信息。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+            <param name="arg2">日志参数 2。</param>
         </member>
         <member name="M:GameFramework.Log.Info(System.String,System.Object[])">
             <summary>
@@ -1015,6 +1063,30 @@
             </summary>
             <param name="message">日志内容。</param>
         </member>
+        <member name="M:GameFramework.Log.Warning(System.String,System.Object)">
+            <summary>
+            打印警告级别日志，建议在发生局部功能逻辑错误，但尚不会导致游戏崩溃或异常时使用。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+        </member>
+        <member name="M:GameFramework.Log.Warning(System.String,System.Object,System.Object)">
+            <summary>
+            打印警告级别日志，建议在发生局部功能逻辑错误，但尚不会导致游戏崩溃或异常时使用。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+        </member>
+        <member name="M:GameFramework.Log.Warning(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            打印警告级别日志，建议在发生局部功能逻辑错误，但尚不会导致游戏崩溃或异常时使用。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+            <param name="arg2">日志参数 2。</param>
+        </member>
         <member name="M:GameFramework.Log.Warning(System.String,System.Object[])">
             <summary>
             打印警告级别日志，建议在发生局部功能逻辑错误，但尚不会导致游戏崩溃或异常时使用。
@@ -1028,6 +1100,30 @@
             </summary>
             <param name="message">日志内容。</param>
         </member>
+        <member name="M:GameFramework.Log.Error(System.String,System.Object)">
+            <summary>
+            打印错误级别日志，建议在发生功能逻辑错误，但尚不会导致游戏崩溃或异常时使用。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+        </member>
+        <member name="M:GameFramework.Log.Error(System.String,System.Object,System.Object)">
+            <summary>
+            打印错误级别日志，建议在发生功能逻辑错误，但尚不会导致游戏崩溃或异常时使用。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+        </member>
+        <member name="M:GameFramework.Log.Error(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            打印错误级别日志，建议在发生功能逻辑错误，但尚不会导致游戏崩溃或异常时使用。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+            <param name="arg2">日志参数 2。</param>
+        </member>
         <member name="M:GameFramework.Log.Error(System.String,System.Object[])">
             <summary>
             打印错误级别日志，建议在发生功能逻辑错误，但尚不会导致游戏崩溃或异常时使用。
@@ -1040,6 +1136,30 @@
             打印严重错误级别日志，建议在发生严重错误，可能导致游戏崩溃或异常时使用，此时应尝试重启进程或重建游戏框架。
             </summary>
             <param name="message">日志内容。</param>
+        </member>
+        <member name="M:GameFramework.Log.Fatal(System.String,System.Object)">
+            <summary>
+            打印严重错误级别日志，建议在发生严重错误，可能导致游戏崩溃或异常时使用，此时应尝试重启进程或重建游戏框架。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+        </member>
+        <member name="M:GameFramework.Log.Fatal(System.String,System.Object,System.Object)">
+            <summary>
+            打印严重错误级别日志，建议在发生严重错误，可能导致游戏崩溃或异常时使用，此时应尝试重启进程或重建游戏框架。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+        </member>
+        <member name="M:GameFramework.Log.Fatal(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            打印严重错误级别日志，建议在发生严重错误，可能导致游戏崩溃或异常时使用，此时应尝试重启进程或重建游戏框架。
+            </summary>
+            <param name="format">日志格式。</param>
+            <param name="arg0">日志参数 0。</param>
+            <param name="arg1">日志参数 1。</param>
+            <param name="arg2">日志参数 2。</param>
         </member>
         <member name="M:GameFramework.Log.Fatal(System.String,System.Object[])">
             <summary>
@@ -5975,6 +6095,11 @@
             获取远程终结点的端口号。
             </summary>
         </member>
+        <member name="P:GameFramework.Network.INetworkChannel.PacketHeaderLength">
+            <summary>
+            获取数据包头长度。
+            </summary>
+        </member>
         <member name="P:GameFramework.Network.INetworkChannel.MaxPacketLength">
             <summary>
             获取数据包最大字节数。
@@ -6023,12 +6148,31 @@
             <param name="port">远程主机的端口号。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
+        <member name="M:GameFramework.Network.INetworkChannel.Connect(System.Net.IPAddress,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            连接到远程主机。
+            </summary>
+            <param name="ipAddress">远程主机的 IP 地址。</param>
+            <param name="port">远程主机的端口号。</param>
+            <param name="packetHeaderLength">数据包头长度。</param>
+            <param name="maxPacketLength">数据包最大字节数。</param>
+        </member>
         <member name="M:GameFramework.Network.INetworkChannel.Connect(System.Net.IPAddress,System.Int32,System.Int32,System.Object)">
             <summary>
             连接到远程主机。
             </summary>
             <param name="ipAddress">远程主机的 IP 地址。</param>
             <param name="port">远程主机的端口号。</param>
+            <param name="maxPacketLength">数据包最大字节数。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="M:GameFramework.Network.INetworkChannel.Connect(System.Net.IPAddress,System.Int32,System.Int32,System.Int32,System.Object)">
+            <summary>
+            连接到远程主机。
+            </summary>
+            <param name="ipAddress">远程主机的 IP 地址。</param>
+            <param name="port">远程主机的端口号。</param>
+            <param name="packetHeaderLength">数据包头长度。</param>
             <param name="maxPacketLength">数据包最大字节数。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
@@ -6203,7 +6347,7 @@
             网络消息包处理器接口。
             </summary>
         </member>
-        <member name="P:GameFramework.Network.IPacketHandler.OpCode">
+        <member name="P:GameFramework.Network.IPacketHandler.Id">
             <summary>
             获取网络消息包协议编号。
             </summary>
@@ -6503,6 +6647,11 @@
             获取远程终结点的端口号。
             </summary>
         </member>
+        <member name="P:GameFramework.Network.NetworkManager.NetworkChannel.PacketHeaderLength">
+            <summary>
+            获取数据包头长度。
+            </summary>
+        </member>
         <member name="P:GameFramework.Network.NetworkManager.NetworkChannel.MaxPacketLength">
             <summary>
             获取数据包最大字节数。
@@ -6558,12 +6707,31 @@
             <param name="port">远程主机的端口号。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
+        <member name="M:GameFramework.Network.NetworkManager.NetworkChannel.Connect(System.Net.IPAddress,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            连接到远程主机。
+            </summary>
+            <param name="ipAddress">远程主机的 IP 地址。</param>
+            <param name="port">远程主机的端口号。</param>
+            <param name="packetHeaderLength">数据包头长度。</param>
+            <param name="maxPacketLength">数据包最大字节数。</param>
+        </member>
         <member name="M:GameFramework.Network.NetworkManager.NetworkChannel.Connect(System.Net.IPAddress,System.Int32,System.Int32,System.Object)">
             <summary>
             连接到远程主机。
             </summary>
             <param name="ipAddress">远程主机的 IP 地址。</param>
             <param name="port">远程主机的端口号。</param>
+            <param name="maxPacketLength">数据包最大字节数。</param>
+            <param name="userData">用户自定义数据。</param>
+        </member>
+        <member name="M:GameFramework.Network.NetworkManager.NetworkChannel.Connect(System.Net.IPAddress,System.Int32,System.Int32,System.Int32,System.Object)">
+            <summary>
+            连接到远程主机。
+            </summary>
+            <param name="ipAddress">远程主机的 IP 地址。</param>
+            <param name="port">远程主机的端口号。</param>
+            <param name="packetHeaderLength">数据包头长度。</param>
             <param name="maxPacketLength">数据包最大字节数。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
@@ -9465,6 +9633,12 @@
             <param name="loadAssetCallbacks">加载资源回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
         </member>
+        <member name="M:GameFramework.Resource.ResourceManager.UnloadAsset(System.Object)">
+            <summary>
+            卸载资源。
+            </summary>
+            <param name="asset">要卸载的资源。</param>
+        </member>
         <member name="M:GameFramework.Resource.ResourceManager.LoadScene(System.String,GameFramework.Resource.LoadSceneCallbacks)">
             <summary>
             异步加载场景。
@@ -9494,12 +9668,6 @@
             <param name="sceneAssetName">要卸载场景资源的名称。</param>
             <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
             <param name="userData">用户自定义数据。</param>
-        </member>
-        <member name="M:GameFramework.Resource.ResourceManager.UnloadAsset(System.Object)">
-            <summary>
-            卸载资源。
-            </summary>
-            <param name="asset">要卸载的资源。</param>
         </member>
         <member name="M:GameFramework.Resource.ResourceManager.GetResourceGroupReady(System.String)">
             <summary>
@@ -9741,7 +9909,7 @@
             资源组。
             </summary>
         </member>
-        <member name="M:GameFramework.Resource.ResourceManager.ResourceGroup.#ctor(System.Collections.Generic.IDictionary{GameFramework.Resource.ResourceManager.ResourceName,GameFramework.Resource.ResourceManager.ResourceInfo})">
+        <member name="M:GameFramework.Resource.ResourceManager.ResourceGroup.#ctor(System.Collections.Generic.Dictionary{GameFramework.Resource.ResourceManager.ResourceName,GameFramework.Resource.ResourceManager.ResourceInfo})">
             <summary>
             初始化资源组的新实例。
             </summary>
@@ -11460,36 +11628,59 @@
             获取或设置声音最大距离。
             </summary>
         </member>
+        <member name="P:GameFramework.Sound.ISoundAgent.Helper">
+            <summary>
+            获取声音代理辅助器。
+            </summary>
+        </member>
         <member name="M:GameFramework.Sound.ISoundAgent.Play">
             <summary>
             播放声音。
             </summary>
+        </member>
+        <member name="M:GameFramework.Sound.ISoundAgent.Play(System.Single)">
+            <summary>
+            播放声音。
+            </summary>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
         </member>
         <member name="M:GameFramework.Sound.ISoundAgent.Stop">
             <summary>
             停止播放声音。
             </summary>
         </member>
+        <member name="M:GameFramework.Sound.ISoundAgent.Stop(System.Single)">
+            <summary>
+            停止播放声音。
+            </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+        </member>
         <member name="M:GameFramework.Sound.ISoundAgent.Pause">
             <summary>
             暂停播放声音。
             </summary>
+        </member>
+        <member name="M:GameFramework.Sound.ISoundAgent.Pause(System.Single)">
+            <summary>
+            暂停播放声音。
+            </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
         </member>
         <member name="M:GameFramework.Sound.ISoundAgent.Resume">
             <summary>
             恢复播放声音。
             </summary>
         </member>
+        <member name="M:GameFramework.Sound.ISoundAgent.Resume(System.Single)">
+            <summary>
+            恢复播放声音。
+            </summary>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
+        </member>
         <member name="M:GameFramework.Sound.ISoundAgent.Reset">
             <summary>
             重置声音代理。
             </summary>
-        </member>
-        <member name="M:GameFramework.Sound.ISoundAgent.SetBindingEntity(GameFramework.Entity.IEntity)">
-            <summary>
-            设置声音绑定的实体。
-            </summary>
-            <param name="bindingEntity">声音绑定的实体。</param>
         </member>
         <member name="T:GameFramework.Sound.ISoundAgentHelper">
             <summary>
@@ -11551,25 +11742,29 @@
             重置声音代理事件。
             </summary>
         </member>
-        <member name="M:GameFramework.Sound.ISoundAgentHelper.Play">
+        <member name="M:GameFramework.Sound.ISoundAgentHelper.Play(System.Single)">
             <summary>
             播放声音。
             </summary>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
         </member>
-        <member name="M:GameFramework.Sound.ISoundAgentHelper.Stop">
+        <member name="M:GameFramework.Sound.ISoundAgentHelper.Stop(System.Single)">
             <summary>
             停止播放声音。
             </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
         </member>
-        <member name="M:GameFramework.Sound.ISoundAgentHelper.Pause">
+        <member name="M:GameFramework.Sound.ISoundAgentHelper.Pause(System.Single)">
             <summary>
             暂停播放声音。
             </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
         </member>
-        <member name="M:GameFramework.Sound.ISoundAgentHelper.Resume">
+        <member name="M:GameFramework.Sound.ISoundAgentHelper.Resume(System.Single)">
             <summary>
             恢复播放声音。
             </summary>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
         </member>
         <member name="M:GameFramework.Sound.ISoundAgentHelper.Reset">
             <summary>
@@ -11582,12 +11777,6 @@
             </summary>
             <param name="soundAsset">声音资源。</param>
             <returns>设置声音资源是否成功。</returns>
-        </member>
-        <member name="M:GameFramework.Sound.ISoundAgentHelper.SetBindingEntity(GameFramework.Entity.IEntity)">
-            <summary>
-            设置声音绑定的实体。
-            </summary>
-            <param name="bindingEntity">声音绑定的实体。</param>
         </member>
         <member name="T:GameFramework.Sound.ISoundGroup">
             <summary>
@@ -11771,16 +11960,67 @@
             <param name="serialId">要停止播放声音的序列编号。</param>
             <returns>是否停止播放声音成功。</returns>
         </member>
+        <member name="M:GameFramework.Sound.ISoundManager.StopSound(System.Int32,System.Single)">
+            <summary>
+            停止播放声音。
+            </summary>
+            <param name="serialId">要停止播放声音的序列编号。</param>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+            <returns>是否停止播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.ISoundManager.PauseSound(System.Int32)">
+            <summary>
+            暂停播放声音。
+            </summary>
+            <param name="serialId">要暂停播放声音的序列编号。</param>
+            <returns>是否暂停播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.ISoundManager.PauseSound(System.Int32,System.Single)">
+            <summary>
+            暂停播放声音。
+            </summary>
+            <param name="serialId">要暂停播放声音的序列编号。</param>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+            <returns>是否暂停播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.ISoundManager.ResumeSound(System.Int32)">
+            <summary>
+            恢复播放声音。
+            </summary>
+            <param name="serialId">要恢复播放声音的序列编号。</param>
+            <returns>是否恢复播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.ISoundManager.ResumeSound(System.Int32,System.Single)">
+            <summary>
+            恢复播放声音。
+            </summary>
+            <param name="serialId">要恢复播放声音的序列编号。</param>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
+            <returns>是否恢复播放声音成功。</returns>
+        </member>
         <member name="M:GameFramework.Sound.ISoundManager.StopAllSounds(System.String)">
             <summary>
             停止所有声音。
             </summary>
             <param name="soundGroupName">声音组名称。</param>
         </member>
+        <member name="M:GameFramework.Sound.ISoundManager.StopAllSounds(System.String,System.Single)">
+            <summary>
+            停止所有声音。
+            </summary>
+            <param name="soundGroupName">声音组名称。</param>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+        </member>
         <member name="M:GameFramework.Sound.ISoundManager.StopAllSounds">
             <summary>
             停止所有声音。
             </summary>
+        </member>
+        <member name="M:GameFramework.Sound.ISoundManager.StopAllSounds(System.Single)">
+            <summary>
+            停止所有声音。
+            </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
         </member>
         <member name="T:GameFramework.Sound.PlaySoundDependencyAssetEventArgs">
             <summary>
@@ -11955,6 +12195,11 @@
         <member name="P:GameFramework.Sound.PlaySoundParams.VolumeInSoundGroup">
             <summary>
             获取或设置在声音组内音量大小。
+            </summary>
+        </member>
+        <member name="P:GameFramework.Sound.PlaySoundParams.FadeInSeconds">
+            <summary>
+            获取或设置声音淡入时间，以秒为单位。
             </summary>
         </member>
         <member name="P:GameFramework.Sound.PlaySoundParams.Pitch">
@@ -12221,16 +12466,67 @@
             <param name="serialId">要停止播放声音的序列编号。</param>
             <returns>是否停止播放声音成功。</returns>
         </member>
+        <member name="M:GameFramework.Sound.SoundManager.StopSound(System.Int32,System.Single)">
+            <summary>
+            停止播放声音。
+            </summary>
+            <param name="serialId">要停止播放声音的序列编号。</param>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+            <returns>是否停止播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.SoundManager.PauseSound(System.Int32)">
+            <summary>
+            暂停播放声音。
+            </summary>
+            <param name="serialId">要暂停播放声音的序列编号。</param>
+            <returns>是否暂停播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.SoundManager.PauseSound(System.Int32,System.Single)">
+            <summary>
+            暂停播放声音。
+            </summary>
+            <param name="serialId">要暂停播放声音的序列编号。</param>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+            <returns>是否暂停播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.SoundManager.ResumeSound(System.Int32)">
+            <summary>
+            恢复播放声音。
+            </summary>
+            <param name="serialId">要恢复播放声音的序列编号。</param>
+            <returns>是否恢复播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.SoundManager.ResumeSound(System.Int32,System.Single)">
+            <summary>
+            恢复播放声音。
+            </summary>
+            <param name="serialId">要恢复播放声音的序列编号。</param>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
+            <returns>是否恢复播放声音成功。</returns>
+        </member>
         <member name="M:GameFramework.Sound.SoundManager.StopAllSounds(System.String)">
             <summary>
             停止所有声音。
             </summary>
             <param name="soundGroupName">声音组名称。</param>
         </member>
+        <member name="M:GameFramework.Sound.SoundManager.StopAllSounds(System.String,System.Single)">
+            <summary>
+            停止所有声音。
+            </summary>
+            <param name="soundGroupName">声音组名称。</param>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+        </member>
         <member name="M:GameFramework.Sound.SoundManager.StopAllSounds">
             <summary>
             停止所有声音。
             </summary>
+        </member>
+        <member name="M:GameFramework.Sound.SoundManager.StopAllSounds(System.Single)">
+            <summary>
+            停止所有声音。
+            </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
         </member>
         <member name="T:GameFramework.Sound.SoundManager.SoundAgent">
             <summary>
@@ -12315,6 +12611,11 @@
             获取或设置声音最大距离。
             </summary>
         </member>
+        <member name="P:GameFramework.Sound.SoundManager.SoundAgent.Helper">
+            <summary>
+            获取声音代理辅助器。
+            </summary>
+        </member>
         <member name="P:GameFramework.Sound.SoundManager.SoundAgent.SetSoundAssetTime">
             <summary>
             获取声音创建时间。
@@ -12325,31 +12626,49 @@
             播放声音。
             </summary>
         </member>
+        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.Play(System.Single)">
+            <summary>
+            播放声音。
+            </summary>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
+        </member>
         <member name="M:GameFramework.Sound.SoundManager.SoundAgent.Stop">
             <summary>
             停止播放声音。
             </summary>
+        </member>
+        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.Stop(System.Single)">
+            <summary>
+            停止播放声音。
+            </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
         </member>
         <member name="M:GameFramework.Sound.SoundManager.SoundAgent.Pause">
             <summary>
             暂停播放声音。
             </summary>
         </member>
+        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.Pause(System.Single)">
+            <summary>
+            暂停播放声音。
+            </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+        </member>
         <member name="M:GameFramework.Sound.SoundManager.SoundAgent.Resume">
             <summary>
             恢复播放声音。
             </summary>
         </member>
+        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.Resume(System.Single)">
+            <summary>
+            恢复播放声音。
+            </summary>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
+        </member>
         <member name="M:GameFramework.Sound.SoundManager.SoundAgent.Reset">
             <summary>
             重置声音代理。
             </summary>
-        </member>
-        <member name="M:GameFramework.Sound.SoundManager.SoundAgent.SetBindingEntity(GameFramework.Entity.IEntity)">
-            <summary>
-            设置声音绑定的实体。
-            </summary>
-            <param name="bindingEntity">声音绑定的实体。</param>
         </member>
         <member name="T:GameFramework.Sound.SoundManager.SoundGroup">
             <summary>
@@ -12410,17 +12729,35 @@
             <param name="errorCode">错误码。</param>
             <returns>用于播放的声音代理。</returns>
         </member>
-        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.StopSound(System.Int32)">
+        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.StopSound(System.Int32,System.Single)">
             <summary>
             停止播放声音。
             </summary>
             <param name="serialId">要停止播放声音的序列编号。</param>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
             <returns>是否停止播放声音成功。</returns>
         </member>
-        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.StopAllSounds">
+        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.PauseSound(System.Int32,System.Single)">
+            <summary>
+            暂停播放声音。
+            </summary>
+            <param name="serialId">要暂停播放声音的序列编号。</param>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
+            <returns>是否暂停播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.ResumeSound(System.Int32,System.Single)">
+            <summary>
+            恢复播放声音。
+            </summary>
+            <param name="serialId">要恢复播放声音的序列编号。</param>
+            <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
+            <returns>是否恢复播放声音成功。</returns>
+        </member>
+        <member name="M:GameFramework.Sound.SoundManager.SoundGroup.StopAllSounds(System.Single)">
             <summary>
             停止所有声音。
             </summary>
+            <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
         </member>
         <member name="T:GameFramework.UI.CloseUIFormCompleteEventArgs">
             <summary>

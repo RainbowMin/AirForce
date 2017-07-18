@@ -3,7 +3,7 @@ using GameFramework.DataTable;
 using System;
 using UnityGameFramework.Runtime;
 
-namespace AirForce
+namespace StarForce
 {
     public static class EntityExtension
     {
@@ -62,6 +62,16 @@ namespace AirForce
         public static void ShowBullet(this EntityComponent entityCompoennt, BulletData data)
         {
             entityCompoennt.ShowEntity(typeof(Bullet), "Bullet", data);
+        }
+
+        public static void ShowAsteroid(this EntityComponent entityCompoennt, AsteroidData data)
+        {
+            entityCompoennt.ShowEntity(typeof(Asteroid), "Asteroid", data);
+        }
+
+        public static void ShowEffect(this EntityComponent entityComponent, EffectData data)
+        {
+            entityComponent.ShowEntity(typeof(Effect), "Effect", data);
         }
 
         private static void ShowEntity(this EntityComponent entityComponent, Type logicType, string entityGroup, EntityData data)

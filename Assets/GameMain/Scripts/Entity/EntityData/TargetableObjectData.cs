@@ -1,21 +1,22 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AirForce
+namespace StarForce
 {
     [Serializable]
     public abstract class TargetableObjectData : EntityData
     {
         [SerializeField]
-        private CampType m_Camp = CampType.Player;
+        private CampType m_Camp = CampType.Unknown;
 
         [SerializeField]
         private int m_HP = 0;
 
-        public TargetableObjectData(int entityId, int typeId)
+        public TargetableObjectData(int entityId, int typeId, CampType camp)
             : base(entityId, typeId)
         {
-
+            m_Camp = camp;
+            m_HP = 0;
         }
 
         /// <summary>
@@ -26,10 +27,6 @@ namespace AirForce
             get
             {
                 return m_Camp;
-            }
-            set
-            {
-                m_Camp = value;
             }
         }
 
